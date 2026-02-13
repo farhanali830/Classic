@@ -17,7 +17,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // --- Elements ---
     const typewriterElement = document.getElementById('typewriter-text');
-    const playMusicBtn = document.getElementById('playMusic');
+    // const playMusicBtn = document.getElementById('playMusic'); // Removed
     const bgMusic = document.getElementById('bgMusic');
     // const yesBtn = document.getElementById('yesBtn'); // Removed
     // const noBtn = document.getElementById('noBtn');   // Removed
@@ -25,23 +25,25 @@ document.addEventListener('DOMContentLoaded', () => {
     const startBtn = document.getElementById('startBtn');
     const mainContent = document.getElementById('main-content');
 
-    // --- Smooth Scroll ---
+    // --- Background Music State ---
+    let isPlaying = false;
+
+    // --- Smooth Scroll & Music Start ---
     startBtn.addEventListener('click', () => {
         mainContent.scrollIntoView({ behavior: 'smooth' });
-    });
-
-    // --- Background Music ---
-    let isPlaying = false;
-    playMusicBtn.addEventListener('click', () => {
-        if (isPlaying) {
-            bgMusic.pause();
-            playMusicBtn.textContent = '🎵 Play Song';
-        } else {
+        // Try to play music when user clicks "Click Here" (User Interaction)
+        if (!isPlaying) {
             bgMusic.play().then(() => {
-                playMusicBtn.textContent = '⏸ Pause Song';
+                isPlaying = true;
             }).catch(e => console.log("Audio play failed:", e));
         }
-        isPlaying = !isPlaying;
+    });
+
+    // Attempt Auto-play on load (might be blocked by browser)
+    bgMusic.play().then(() => {
+        isPlaying = true;
+    }).catch(e => {
+        console.log("Autoplay blocked. Waiting for interaction.");
     });
 
     // --- Typewriter Effect ---
@@ -71,34 +73,7 @@ document.addEventListener('DOMContentLoaded', () => {
     setTimeout(typeEffect, 1000); // 1s delay before starting
 
 
-    // --- Countdown Timer ---
-    function updateCountdown() {
-        const now = new Date().getTime();
-        const distance = valentineDate - now;
 
-        // If Valentine's day starts or passed for this year, show zeroes or change message
-        if (distance < 0) {
-            document.getElementById('days').textContent = "00";
-            document.getElementById('hours').textContent = "00";
-            document.getElementById('minutes').textContent = "00";
-            document.getElementById('seconds').textContent = "00";
-            // Optional: Change title to "It's Valentine's Day!"
-            return;
-        }
-
-        const days = Math.floor(distance / (1000 * 60 * 60 * 24));
-        const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-        const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-        const seconds = Math.floor((distance % (1000 * 60)) / 1000);
-
-        document.getElementById('days').textContent = String(days).padStart(2, '0');
-        document.getElementById('hours').textContent = String(hours).padStart(2, '0');
-        document.getElementById('minutes').textContent = String(minutes).padStart(2, '0');
-        document.getElementById('seconds').textContent = String(seconds).padStart(2, '0');
-    }
-
-    setInterval(updateCountdown, 1000);
-    updateCountdown(); // Initial call
 
     // --- Love Counter ---
     // Set your start date here (Year, Month (0-11), Day)
