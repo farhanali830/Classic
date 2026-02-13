@@ -1,0 +1,393 @@
+:root {
+    --primary-color: #ff4d6d;
+    --secondary-color: #ff8fa3;
+    --bg-gradient: linear-gradient(135deg, #ff9a9e 0%, #fecfef 99%, #fecfef 100%);
+    --intro-gradient: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), linear-gradient(to bottom, #ff9a9e, #fad0c4);
+    --text-color: #590d22;
+    --white: #ffffff;
+    --font-heading: 'Pacifico', cursive;
+    --font-script: 'Great Vibes', cursive;
+    --font-body: 'Poppins', sans-serif;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth; /* Enable smooth scrolling */
+}
+
+body {
+    background: var(--bg-gradient);
+    font-family: var(--font-body);
+    color: var(--text-color);
+    min-height: 100vh;
+    overflow-x: hidden;
+}
+
+/* Music Control - Sticky */
+.music-control {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 200;
+}
+
+.music-control button {
+    background: rgba(255, 255, 255, 0.5);
+    border: none;
+    padding: 10px 15px;
+    border-radius: 20px;
+    cursor: pointer;
+    font-family: var(--font-body);
+    font-size: 0.9rem;
+    transition: 0.3s;
+}
+
+.music-control button:hover {
+    background: var(--white);
+    transform: scale(1.05);
+}
+
+/* --- SECTION 1: INTRO --- */
+.intro-section {
+    height: 100vh;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background: var(--intro-gradient); /* Or use an image: url('images/bg.jpg') center/cover */
+    text-align: center;
+    position: relative;
+    padding: 20px;
+}
+
+.intro-title {
+    font-family: var(--font-script);
+    font-size: 6rem;
+    color: var(--white);
+    text-shadow: 2px 2px 10px rgba(0,0,0,0.2);
+    margin-bottom: 20px;
+    animation: fadeInDown 1.5s ease-out;
+}
+
+.intro-subtitle {
+    font-size: 1.5rem;
+    color: var(--white);
+    margin-bottom: 40px;
+    animation: fadeInUp 1.5s ease-out 0.5s forwards;
+    opacity: 0;
+}
+
+.scroll-btn {
+    padding: 18px 50px;
+    font-size: 1.5rem;
+    background: var(--white);
+    color: var(--primary-color);
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+    font-family: var(--font-heading);
+    box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+    transition: transform 0.3s, box-shadow 0.3s;
+    animation: pulseBtn 2s infinite 2s;
+    opacity: 0;
+    animation-fill-mode: forwards;
+}
+
+.scroll-btn:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 30px rgba(0,0,0,0.2);
+}
+
+@keyframes pulseBtn {
+    0% { transform: scale(1); opacity: 1;}
+    50% { transform: scale(1.05); opacity: 1;}
+    100% { transform: scale(1); opacity: 1;}
+}
+
+/* Scroll Indicator */
+.scroll-indicator {
+    position: absolute;
+    bottom: 30px;
+    color: var(--white);
+    font-size: 2rem;
+    animation: bounce 2s infinite;
+    opacity: 0.8;
+}
+
+@keyframes bounce {
+    0%, 20%, 50%, 80%, 100% {transform: translateY(0);}
+    40% {transform: translateY(-10px);}
+    60% {transform: translateY(-5px);}
+}
+
+/* --- SECTION 2: MAIN CONTENT --- */
+.main-content {
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 50px 0;
+    position: relative;
+}
+
+/* Container */
+.container {
+    width: 90%;
+    max-width: 800px;
+    text-align: center;
+    background: rgba(255, 255, 255, 0.4);
+    -webkit-backdrop-filter: blur(10px);
+    backdrop-filter: blur(10px);
+    padding: 40px;
+    border-radius: 20px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+    z-index: 10;
+}
+
+/* Header */
+.main-title {
+    font-family: var(--font-script);
+    font-size: 4rem;
+    color: var(--primary-color);
+    margin-bottom: 20px;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+    animation: heartbeat 2s infinite;
+}
+
+@keyframes heartbeat {
+    0% { transform: scale(1); }
+    15% { transform: scale(1.1); }
+    30% { transform: scale(1); }
+    45% { transform: scale(1.1); }
+    60% { transform: scale(1); }
+}
+
+/* Welcome Section */
+.welcome-section h2 {
+    font-family: var(--font-heading);
+    color: var(--text-color);
+    font-size: 2rem;
+    margin-bottom: 20px;
+    opacity: 0;
+    transition: opacity 1s; /* Controlled by JS observer ideally, or just animation */
+    /* animation: fadeInUp 1.5s ease-out forwards; Removed auto-trigger, let's keep it simple or use IntersectionObserver */
+    animation: fadeInUp 1.5s ease-out forwards; 
+}
+
+@keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fadeInDown {
+    from { opacity: 0; transform: translateY(-20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+
+/* Typewriter */
+.typewriter-container {
+    min-height: 80px;
+    margin: 20px 0;
+    font-size: 1.2rem;
+    line-height: 1.6;
+}
+
+.cursor {
+    animation: blink 1s infinite;
+    color: var(--primary-color);
+}
+
+@keyframes blink {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0; }
+}
+
+/* Countdown */
+.countdown-container {
+    margin: 40px 0;
+}
+
+.countdown-container h3 {
+    margin-bottom: 15px;
+    font-weight: 400;
+}
+
+.countdown {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+}
+
+.time-box {
+    background: var(--white);
+    padding: 15px;
+    border-radius: 10px;
+    min-width: 80px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+}
+
+.time-box span {
+    display: block;
+    font-size: 2rem;
+    font-weight: 600;
+    color: var(--primary-color);
+}
+
+.time-box p {
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    color: #888;
+}
+
+/* Love Counter */
+.love-counter-container {
+    margin: 40px 0;
+}
+
+.love-counter-container h3 {
+    margin-bottom: 20px;
+    font-family: var(--font-heading);
+    font-size: 1.8rem;
+    color: var(--text-color);
+}
+
+.love-counter {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    flex-wrap: wrap;
+}
+
+/* Reuse time-box from countdown but maybe slightly different color if needed, 
+   currently it works fine with existing styles */
+
+/* Buttons */
+.proposal-section {
+    margin-top: 40px;
+}
+
+.question {
+    font-size: 2rem;
+    margin-bottom: 30px;
+    font-family: var(--font-heading);
+}
+
+.buttons {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    position: relative;
+    min-height: 60px; /* Space for buttons */
+}
+
+.btn {
+    padding: 15px 40px;
+    font-size: 1.2rem;
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+    font-family: var(--font-body);
+    font-weight: 600;
+    transition: all 0.3s ease;
+}
+
+.forever-btn {
+    background: linear-gradient(45deg, #ff4d6d, #ff8fa3);
+    color: var(--white);
+    font-size: 1.5rem;
+    padding: 20px 50px;
+    box-shadow: 0 10px 25px rgba(255, 77, 109, 0.5);
+    animation: heartbeat 1.5s infinite;
+}
+
+.forever-btn:hover {
+    transform: translateY(-5px) scale(1.05);
+    box-shadow: 0 15px 35px rgba(255, 77, 109, 0.7);
+}
+
+/* Floating Hearts */
+.hearts-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 0;
+    overflow: hidden;
+}
+
+.heart {
+    position: absolute;
+    bottom: -20px;
+    color: rgba(255, 255, 255, 0.6);
+    font-size: 20px;
+    animation: floatUp 8s linear infinite;
+    opacity: 0;
+}
+
+@keyframes floatUp {
+    0% { transform: translateY(0) rotate(0deg); opacity: 0; }
+    10% { opacity: 0.8; }
+    100% { transform: translateY(-110vh) rotate(360deg); opacity: 0; }
+}
+
+/* Celebration Overlay */
+.celebration-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.8);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.5s;
+}
+
+.celebration-overlay.visible {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+.hidden {
+    display: none;
+}
+
+.celebration-content {
+    text-align: center;
+    color: var(--white);
+}
+
+.celebration-content h1 {
+    font-family: var(--font-heading);
+    font-size: 4rem;
+    color: var(--primary-color);
+    margin-bottom: 20px;
+}
+
+.kiss-emoji {
+    font-size: 5rem;
+    animation: heartbeat 1s infinite fast;
+}
+
+/* Mobile Responsive */
+@media (max-width: 600px) {
+    .intro-title { font-size: 4rem; }
+    .scroll-btn { padding: 15px 30px; font-size: 1.2rem; }
+    .main-title { font-size: 3rem; }
+    .countdown { flex-wrap: wrap; }
+    .time-box { flex: 1 1 40%; }
+    .buttons { flex-direction: column; align-items: center; gap: 15px; }
+}

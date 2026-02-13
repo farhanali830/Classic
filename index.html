@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>For My Valentine ❤️</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Pacifico&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div class="music-control">
+        <button id="playMusic">🎵 Play Song</button>
+    </div>
+    
+    <!-- Hidden Audio element -->
+    <audio id="bgMusic" loop>
+        <!-- Place your music file in the music/ folder and update src to "music/song.mp3" -->
+        <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mpeg">
+        Your browser does not support the audio element.
+    </audio>
+
+    <!-- SECTION 1: Full Screen Intro -->
+    <section id="intro-section" class="intro-section">
+        <div class="intro-content">
+            <h1 class="intro-title">For You... ❤️</h1>
+            <p class="intro-subtitle">A little surprise for someone special</p>
+            <button id="startBtn" class="scroll-btn">Click Here My Love ❤️</button>
+        </div>
+        <div class="scroll-indicator">
+            <span>↓</span>
+        </div>
+    </section>
+
+    <!-- SECTION 2: Main Content (The Surprise) -->
+    <section id="main-content" class="main-content">
+        <div class="container">
+            <div class="header">
+                <h1 class="main-title">Happy Valentine's Day</h1>
+            </div>
+
+            <div class="content-wrapper">
+                <!-- Welcome Section -->
+                <div class="welcome-section">
+                    <h2 class="fade-in">To My Special Person 💌</h2>
+                </div>
+
+                <!-- Typewriter Love Message -->
+                <div class="typewriter-container">
+                    <p id="typewriter-text"></p>
+                    <span class="cursor">|</span>
+                </div>
+
+                <!-- Countdown Timer -->
+                <div class="countdown-container">
+                    <h3>Time Until Valentine's Day</h3>
+                    <div id="countdown" class="countdown">
+                        <div class="time-box">
+                            <span id="days">00</span>
+                            <p>Days</p>
+                        </div>
+                        <div class="time-box">
+                            <span id="hours">00</span>
+                            <p>Hours</p>
+                        </div>
+                        <div class="time-box">
+                            <span id="minutes">00</span>
+                            <p>Minutes</p>
+                        </div>
+                        <div class="time-box">
+                            <span id="seconds">00</span>
+                            <p>Seconds</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Love Counter Section -->
+                <div class="love-counter-container">
+                    <h3>We have been together for... 💕</h3>
+                    <div id="love-counter" class="love-counter">
+                        <div class="time-box">
+                            <span id="love-years">0</span>
+                            <p>Years</p>
+                        </div>
+                        <div class="time-box">
+                            <span id="love-months">0</span>
+                            <p>Months</p>
+                        </div>
+                        <div class="time-box">
+                            <span id="love-days">0</span>
+                            <p>Days</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Interaction Section -->
+                <div class="proposal-section">
+                    <h2 class="question">Will you be my Valentine? 💖</h2>
+                    <div class="buttons">
+                        <button id="foreverBtn" class="btn forever-btn">Will you be my Valentine forever? 💍</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Floating Hearts Container -->
+    <div class="hearts-container"></div>
+    
+    <!-- Modal/Overlay for Celebration -->
+    <div id="celebration" class="celebration-overlay hidden">
+        <div class="celebration-content">
+            <h1>Yay! I Love You! ❤️</h1>
+            <p>Best Valentine Ever!</p>
+            <div class="kiss-emoji">😘</div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
